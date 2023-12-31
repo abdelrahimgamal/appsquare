@@ -20,7 +20,7 @@ class ProductsAdapter(private val dataSet: ArrayList<Product>) :
         return ViewHolder.from(parent)
     }
 
-    class ViewHolder(val binding: ItemProductBinding) :
+    class ViewHolder(private val binding: ItemProductBinding) :
         RecyclerView.ViewHolder(binding.root) {
 
         fun bind(item: Product) {

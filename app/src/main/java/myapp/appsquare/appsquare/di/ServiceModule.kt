@@ -14,6 +14,7 @@ import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import java.util.concurrent.TimeUnit
 import javax.inject.Inject
+import javax.inject.Named
 import javax.inject.Singleton
 
 @Module
@@ -22,7 +23,14 @@ class ServiceModule {
 
 
     @Provides
-    fun provideBaseUrl() = BuildConfig.BASE_URL
+    @Singleton
+    @Named("string1")
+    fun provideString1(): String = "string 1"
+
+    @Provides
+    @Singleton
+    @Named("string2")
+    fun provideString2(): String = "string 2"
 
 
     @Provides
@@ -54,10 +62,10 @@ class ServiceModule {
 
     @Provides
     @Singleton
-    fun provideRetrofit(okHttpClient: OkHttpClient, BASE_URL: String): Retrofit =
+    fun provideRetrofit(okHttpClient: OkHttpClient, @Named("string1") string: String): Retrofit =
         Retrofit.Builder()
             .addConverterFactory(GsonConverterFactory.create())
-            .baseUrl(BASE_URL)
+            .baseUrl(string)
             .client(okHttpClient)
             .build()
 

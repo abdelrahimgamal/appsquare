@@ -11,8 +11,10 @@ import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import dagger.hilt.android.AndroidEntryPoint
 import myapp.appsquare.appsquare.data.adapter.ProductsAdapter
+import myapp.appsquare.appsquare.data.models.Product
 import myapp.appsquare.appsquare.data.models.Status
 import myapp.appsquare.appsquare.databinding.FragmentHomeBinding
+import javax.inject.Inject
 
 @AndroidEntryPoint
 class HomeFragment : Fragment() {
@@ -22,6 +24,8 @@ class HomeFragment : Fragment() {
     private val viewModel by viewModels<HomeViewModel>()
 
     private val args by navArgs<HomeFragmentArgs>()
+
+
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -34,14 +38,13 @@ class HomeFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         setupObservers()
-
-            args.address?.let {
-                Toast.makeText(
-                    requireContext(),
-                    "your picked address is ${it.country}  ${it.city}  ${it.street}",
-                    Toast.LENGTH_SHORT
-                ).show()
-            }
+        args.address?.let {
+            Toast.makeText(
+                requireContext(),
+                "your picked address is ${it.country}  ${it.city}  ${it.street}",
+                Toast.LENGTH_SHORT
+            ).show()
+        }
 
         binding.submitLocation.setOnClickListener {
             goToMap()
@@ -60,15 +63,15 @@ class HomeFragment : Fragment() {
                         binding.productsRv.adapter = ProductsAdapter(data)
                     }
                 }
+
                 Status.ERROR -> {
                     binding.progressCircular.visibility = View.GONE
                     Toast.makeText(requireContext(), it.message, Toast.LENGTH_SHORT).show()
 
                 }
+
                 Status.LOADING -> {
                     binding.progressCircular.visibility = View.VISIBLE
-                    binding.progressCircular
-
                 }
             }
         }
@@ -76,8 +79,6 @@ class HomeFragment : Fragment() {
 
     private fun goToMap() {
         findNavController().navigate(HomeFragmentDirections.actionHomeFragmentToMapFragment())
-
-
     }
 
 }
