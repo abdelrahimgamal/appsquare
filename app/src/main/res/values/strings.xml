@@ -1,9 +1,0 @@
-<resources>
-    <string name="app_name">AppSquareQuiz</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="submit_location">Submit Location</string>
-    <string name="google_maps_key">AIzaSyBkjnKua7_l4yGtFZG4fJpijs9p4c2LNp0</string>
-    <string name="select_another">select another</string>
-    <string name="save">Save</string>
-</resources>

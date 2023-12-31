@@ -13,6 +13,8 @@ interface DataAPI {
     suspend fun getProducts(@Body registerData: RegisterData): Response<ServerResponse<String>>
 
 
+
+
     @POST("posts")
     @Multipart
     suspend fun postPost(@Part file: MultipartBody.Part)
